@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+#registForm{
+	
+	width: 500px;
+	height:620px;
+	border:1px solid red;
+	margin:auto;
+}
+h2{
+	text-align:center;
+}
+
+table{
+	margin:auto;
+	width:450px;
+}
+
+.td_left {
+	width:150;
+	background: orange;
+	
+}
