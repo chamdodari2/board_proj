@@ -1,11 +1,11 @@
 package board_proj.dao.impl;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import board_proj.dao.BoardDao;
 import board_proj.dto.BoardDto;
@@ -32,8 +32,53 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public ArrayList<BoardDto> selectArticeleList(int page, int limit) {
+	public ArrayList<BoardDto> selectArticeleList(int page, int limit) { //테이블목록 출력하기!
+		String sql =  "select  BOARD_NUM, BOARD_NAME, BOARD_PASS, BOARD_SUBJECT, BOARD_CONTENT, BOARD_FILE, "
+					+ "BOARD_RE_REF, BOARD_RE_LEV, BOARD_RE_SEQ, BOARD_READCOUNT, BOARD_DATE " 
+					+ "from board " 
+					+ "order by BOARD_RE_REF desc, BOARD_RE_SEQ asc "
+					+ "limit ? , ? ";
+			int startRow = (page-1) * limit; //해당 페이지 시작위치
+			try(PreparedStatement pstmt = con.prepareStatement(sql)){
+				pstmt.setInt(1, startRow);
+				pstmt.setInt(2, limit);
+				try(ResultSet rs = pstmt.executeQuery()){
+					if(rs.next()) {
+						ArrayList<BoardDto> list = new ArrayList<BoardDto>();
+						do {
+							list.add(getBoardDto(rs));
+						}while(rs.next());
+						return list;
+					}
+				}
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		
 		return null;
+	}
+
+	private BoardDto getBoardDto(ResultSet rs) throws SQLException {
+		// BOARD_NUM, BOARD_NAME, BOARD_PASS, BOARD_SUBJECT, BOARD_CONTENT, BOARD_FILE, 
+		//BOARD_RE_REF, BOARD_RE_LEV, BOARD_RE_SEQ, BOARD_READCOUNT, BOARD_DATE 
+		
+		int board_num =rs.getInt("BOARD_NUM");
+		String board_name =rs.getString("BOARD_NAME");
+		String board_pass =rs.getString("BOARD_PASS");
+		String board_subject =rs.getString("BOARD_SUBJECT");
+		String board_content =rs.getString("BOARD_CONTENT");
+		String board_file =rs.getString("BOARD_FILE");
+		int board_re_ref =rs.getInt("BOARD_RE_REF");
+		int board_re_lev =rs.getInt("BOARD_RE_LEV");
+		int board_re_seq =rs.getInt("BOARD_RE_SEQ");
+		int board_readcount =rs.getInt("BOARD_READCOUNT");
+		Date board_date =rs.getDate("BOARD_DATE");
+	
+		
+		return new BoardDto(board_num, board_name, board_pass, board_subject, board_content, board_file, board_re_ref, board_re_lev, board_re_seq, board_readcount, board_date);
 	}
 
 	@Override
@@ -47,6 +92,7 @@ public class BoardDaoImpl implements BoardDao {
 				   + " (BOARD_NUM, BOARD_NAME, BOARD_PASS, BOARD_SUBJECT, BOARD_CONTENT, BOARD_FILE,"
 				   + " BOARD_RE_REF) VALUES" //1번글에 대한 답글 써야해서 같은걸 가져와야함
 				   + " (? , ? , ? , ? , ? , ? , ?)";
+		
 		try(PreparedStatement pstmt = con.prepareStatement(sql)){
 			int nextNum =nextBoardNum();
 			pstmt.setInt(1, nextNum );

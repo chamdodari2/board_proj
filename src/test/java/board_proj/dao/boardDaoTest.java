@@ -3,6 +3,7 @@ package board_proj.dao;
 import static org.junit.Assert.fail;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -44,7 +45,18 @@ public class boardDaoTest {
 	
 	@Test
 	public void testSelectListCount() {
-		fail("Not yet implemented");
+		System.out.println("검색");
+		int page = 1;
+		int limit =10;
+		ArrayList<BoardDto> list = dao.selectArticeleList(page, limit);
+		Assert.assertNotNull(list);
+		list.stream().forEach(System.out::println);
+		System.out.println("===============");
+		dao.selectArticeleList(2, 10).stream().forEach(System.out::println);
+		
+//		for (BoardDto t : list) {
+//			System.out.println(t);
+//		}
 	}
 
 	@Test

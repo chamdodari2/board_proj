@@ -51,6 +51,8 @@ public class BoardFrontController extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/boardList.do")) {
+			System.out.println("boardList >>>>>>>");
 		}
 			
 

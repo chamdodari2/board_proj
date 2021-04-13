@@ -1,6 +1,7 @@
 package board_proj.action;
 
-import javax.servlet.Servlet;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +18,7 @@ public class BoardWriteProAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//BOARD_NAME=aaa&BOARD_PASS=aaa&BOARD_SUBJECT=aaa&BOARD_CONTENT=aaa&BOARD_FILE=math_img_1.jpg
-		ActionForward forward = null;
+	//	
 		
 		//이미지파일을 보드업로드에!
 		String realFolder = "";
@@ -43,15 +44,27 @@ public class BoardWriteProAction implements Action {
 		//위에꺼 다 출력되는지 보장
 		System.out.println("realFolder >>" + realFolder);
 		System.out.println("boardDto >>" + boardDto);
+		
+		//service
 		BoardWriteService service = new BoardWriteService();
-		Boolean result = service.registerArticle(boardDto);
-		if(!result) {
-			
+		boolean result = service.registerArticle(boardDto);
+	
+		
+		ActionForward forward = null;
+		if(result) {
+			forward = new ActionForward();
+			forward.setRedirect(true);
+			forward.setPath("boardList.do");
 		}else {
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('등록실패')");
+			out.println("history.back();");
+			out.println("</script>");
 			
 		}
 		
-		return null;
+		return forward;
 	}
 
 }
