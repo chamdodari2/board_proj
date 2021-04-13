@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board_proj.action.Action;
+import board_proj.action.BoardWriteProAction;
 import board_proj.dto.ActionForward;
 
 @WebServlet("*.do") // 모든 확장자가 do인 애들이 부르면 각 요청에 맞는 jsp로 포워딩쓰
@@ -44,7 +45,12 @@ public class BoardFrontController extends HttpServlet {
 		}else if (command.equals("/boardWritePro.do")) {
 			//BOARD_NAME=aaa&BOARD_PASS=aaa&BOARD_SUBJECT=aaa&BOARD_CONTENT=aaa&BOARD_FILE=math_img_1.jpg
 			//전송한 내용을 받아와서 인서트 해야한당. 서비스 만들어서!!
-			System.out.println("aaaaa");
+			action = new BoardWriteProAction();  //1 생성은 여기, 수행은  오버라이딩 한곳에서 BoardWriteProAction
+			try {
+				forward = action.execute(request, response); //여기로 전가하는것. 네가 처리해라!! 결과값은 내가 받을겡 포워딩할지 리다이렉트할지
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 			
 
