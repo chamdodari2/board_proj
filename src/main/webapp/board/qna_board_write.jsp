@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>MVC 게시판</title>
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="board/css/style.css"> <!--  href="board/css/style.css"  -->
 </head>
 <body>
 <section id = "writeForm">
