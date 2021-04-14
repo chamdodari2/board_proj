@@ -27,7 +27,16 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public int selectListCount() {
-		// TODO Auto-generated method stub
+		String sql = "select count(*) from board";
+		try(PreparedStatement pstmt = con.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery()){
+			if(rs.next()) {
+				return rs.getInt(1);
+			}
+		}catch (SQLException e ) {
+			e.printStackTrace();
+		}
+			
 		return 0;
 	}
 
@@ -155,5 +164,5 @@ public class BoardDaoImpl implements BoardDao {
 		}
 		return 1;
 	}
-
+	
 }

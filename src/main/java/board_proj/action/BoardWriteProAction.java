@@ -13,7 +13,7 @@ import board_proj.dto.ActionForward;
 import board_proj.dto.BoardDto;
 import board_proj.service.BoardWriteService;
 
-public class BoardWriteProAction implements Action {
+public class BoardWriteProAction implements Action { //액션구현쓰 참조할수있당
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

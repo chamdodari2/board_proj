@@ -36,3 +36,7 @@ BOARD_RE_REF, BOARD_RE_LEV, BOARD_RE_SEQ, BOARD_READCOUNT, BOARD_DATE
 from board
 order by BOARD_RE_REF desc, BOARD_RE_SEQ asc  
 limit 10,10; 
+
+
+
+select

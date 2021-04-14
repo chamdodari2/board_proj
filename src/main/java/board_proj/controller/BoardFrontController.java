@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board_proj.action.Action;
+import board_proj.action.BoardListAction;
 import board_proj.action.BoardWriteProAction;
 import board_proj.dto.ActionForward;
 
@@ -52,7 +53,14 @@ public class BoardFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}else if(command.equals("/boardList.do")) {
-			System.out.println("boardList >>>>>>>");
+			action = new BoardListAction();
+			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+//			System.out.println("boardList >>>>>>>  52뜬당. 입력되어있는 갯수");
 		}
 			
 

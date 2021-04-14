@@ -44,7 +44,20 @@ public class boardDaoTest {
 	
 	
 	@Test
-	public void testSelectListCount() {
+	public void test02SelectListCount() {
+		System.out.println("testSelectListCount()");
+		int res = dao.selectListCount();
+		Assert.assertNotEquals(-1, res);
+		System.out.println("res >>>" + res);
+		
+//		for (BoardDto t : list) {
+//			System.out.println(t);
+//		}
+	}
+	
+
+	@Test
+	public void test03SelectArticeleList() {
 		System.out.println("검색");
 		int page = 1;
 		int limit =10;
@@ -53,15 +66,6 @@ public class boardDaoTest {
 		list.stream().forEach(System.out::println);
 		System.out.println("===============");
 		dao.selectArticeleList(2, 10).stream().forEach(System.out::println);
-		
-//		for (BoardDto t : list) {
-//			System.out.println(t);
-//		}
-	}
-
-	@Test
-	public void test02SelectArticeleList() {
-		fail("Not yet implemented");
 	}
 
 	@Test
@@ -70,7 +74,7 @@ public class boardDaoTest {
 	}
 
 	@Test
-	public void test02InsertArticle() {///////////
+	public void test04InsertArticle() {///////////
 		System.out.println("test02InsertArticle()");
 		BoardDto newBoard = new BoardDto(
 		
