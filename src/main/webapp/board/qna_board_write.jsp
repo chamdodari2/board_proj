@@ -18,7 +18,7 @@
 	</tr>
 		<tr>
 	<td class="td_left"><label for="BOARD_PASS">비밀번호</label></td>
-	<td class="td_right"><input type="password" name="BOARD_PASS" id="BOARD_PASS" required" /></td>
+	<td class="td_right"><input type="password" name="BOARD_PASS" id="BOARD_PASS" required /></td>
 	</tr>
 		<tr>
 	<td class="td_left"><label for="BOARD_SUBJECT">제목</label></td>

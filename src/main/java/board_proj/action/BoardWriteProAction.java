@@ -28,12 +28,7 @@ public class BoardWriteProAction implements Action { //액션구현쓰 참조할
 		ServletContext context = request.getServletContext();
 		realFolder = context.getRealPath(saveFolder);
 		
-		MultipartRequest multi = new MultipartRequest(
-				request,
-				realFolder,
-				fileSize,
-				"UTF-8",
-				new DefaultFileRenamePolicy());
+		MultipartRequest multi = new MultipartRequest(request, realFolder, fileSize, "UTF-8", new DefaultFileRenamePolicy());
 		
 		BoardDto boardDto = new BoardDto();
 		boardDto.setBoard_name(multi.getParameter("BOARD_NAME"));
@@ -54,7 +49,7 @@ public class BoardWriteProAction implements Action { //액션구현쓰 참조할
 		if(result) {
 			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath("boardList.do");
+			forward.setPath("boardList.do");  //일로 보내기
 		}else {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");

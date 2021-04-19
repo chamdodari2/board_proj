@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="board/css/style2.css">   <!--  -->
 </head>
 <body>
-<section>
+<section id = "pageList">
 <h2>
 글 목록</h2>
 <h4><a href="boardWriteForm.do">게시판 글쓰기</a></h4>
@@ -36,21 +36,23 @@
 		<td>조회수</td>
 	</tr>
 	<tr>
-		<c:forEach var ="board" items="${articleList}"> 
+		<c:forEach var="board" items="${articleList}" > 
 		<td>${board.board_num}</td>
-		<td>${board.board_subject}</td>
+		<td>
+		   <a href="boardDetail.do?board_num=${ board.board_num}&page=${pageInfo.page}"> ${board.board_subject} </a><!--제목에 링크걸기  -->
 		<td>${board.board_name}</td>
 		<td>${board.board_date}</td>
 		<td>${board.board_readcount}</td>
 		</tr>
-	</c:forEach>
+		</c:forEach>
 
 <%-- <%if(articleList != null&& listCount > 0) %> --%>
 </table>
 </section>
 <c:if test="${pageInfo.listCount > 0}"></c:if>
-${pageInfo}
-<section>
+<%-- ${pageInfo}
+ --%>
+ <section id ="pageList">
 	<c:if test="${pageInfo.page <= 1}">
 	[이전]&nbsp; 
 	</c:if> 

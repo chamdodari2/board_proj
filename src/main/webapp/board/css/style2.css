@@ -2,7 +2,7 @@
 
 h4{
   
-   text-align: right;
+   text-align: center;
 }
 
 .tbl_type, .tbl_type th, .tbl_type td {
@@ -11,6 +11,7 @@ h4{
 }
 
 .tbl_type {
+   height : 460px;
    width: 90%;
    margin: 0 auto;
    max-width:800px;
@@ -65,4 +66,8 @@ h2{
 }
 span{
 	color: red;
+}
+
+section#pageList{
+	text-align: :center;
 }

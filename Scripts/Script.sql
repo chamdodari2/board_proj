@@ -44,10 +44,10 @@ order by BOARD_RE_REF desc, BOARD_RE_SEQ asc
 limit 10,10; 
 
 
-
-SELECT * FROM board WHERE board_num =26;
-SELECT 1 FROM board WHERE board_num =25 and board_pass = '1234'; /* 넘어온 비번값이 1234냐*/ 
+SELECT * FROM board;
+SELECT * FROM board WHERE board_num =78;
+SELECT 1 FROM board WHERE board_num =78 and board_pass = '66'; /* 넘어온 비번값이 1234냐*/ 
 
 DELETE
-FROM board WHERE board_num = 26;
+FROM board WHERE board_num = 78;
 

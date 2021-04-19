@@ -70,7 +70,10 @@ public class boardDaoTest {
 
 	@Test
 	public void testSelectArticle() {
-		fail("Not yet implemented");
+		System.out.println("testSelectArticle()");
+		BoardDto board = dao.selectArticle(1);
+		Assert.assertNotNull(board);
+		System.out.println(board);
 	}
 
 	@Test
@@ -93,7 +96,8 @@ public class boardDaoTest {
 
 	@Test
 	public void testInsertReplyArticle() {
-		fail("Not yet implemented");
+	System.out.println();
+
 	}
 
 	@Test
@@ -102,18 +106,30 @@ public class boardDaoTest {
 	}
 
 	@Test
-	public void testDeleteArticle() {
-		fail("Not yet implemented");
+	public void test08DeleteArticle() {
+		System.out.println("test08DeleteArticle()");
+		int board_num = dao.nextBoardNum() -1;  //최근에 등록한거! 삭제
+		int res = dao.deleteArticle(board_num);
+		Assert.assertEquals(1, res);
+		System.out.println("res >> " + res);
 	}
 
 	@Test
 	public void testUpdateReadCount() {
-		fail("Not yet implemented");
+		System.out.println("testUpdateReadCount()");
+		int res =dao.updateReadCount(1);
+		Assert.assertEquals(1, res);
+		
+
 	}
 
 	@Test
-	public void testIsArticleBoardWriter() {
-		fail("Not yet implemented");
+	public void test07IsArticleBoardWriter() { //딜리트 하기전에 비번 맞느지 확인하기 쓴사람만 삭제가능
+		System.out.println("test07IsArticleBoardWriter()");
+		int board_num = 78; //22번! 삭제
+		boolean res = dao.isArticleBoardWriter(board_num, "11");
+		Assert.assertEquals(true, res);
+		System.out.println("res >> " + res);
 	}
 
 }
