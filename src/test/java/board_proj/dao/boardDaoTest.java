@@ -33,6 +33,12 @@ public class boardDaoTest {
 	public void tearDown() throws Exception {
 		System.out.println();
 	}
+	
+	@Test
+	public void testInsertReplyArticle() {
+	System.out.println();
+
+	}
 	@Test
 	public void test01NextBoardNum() {
 		System.out.println("testNextBoardNum()");
@@ -94,20 +100,23 @@ public class boardDaoTest {
 		
 	}
 
+
+
 	@Test
-	public void testInsertReplyArticle() {
-	System.out.println();
+	public void test08UpdateArticle() {
+		System.out.println("test08UpdateArticle()");
+		int board_num=22;
+		BoardDto article = dao.selectArticle(board_num);
+		int res =dao.updateArticle(article);
+		Assert.assertEquals(1, res);
+		System.out.println("res >>>" + res);
+		
 
 	}
 
 	@Test
-	public void testUpdateArticle() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void test08DeleteArticle() {
-		System.out.println("test08DeleteArticle()");
+	public void test09DeleteArticle() {
+		System.out.println("test09DeleteArticle()");
 		int board_num = dao.nextBoardNum() -1;  //최근에 등록한거! 삭제
 		int res = dao.deleteArticle(board_num);
 		Assert.assertEquals(1, res);

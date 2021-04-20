@@ -16,11 +16,8 @@ public class BoardDeleteProAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
-		System.out.println(board_num);
 		String page = request.getParameter("page");
-		System.out.println(page);
 		String pass = request.getParameter("board_pass");
-		System.out.println(pass);
 		BoardDeleteService service = new BoardDeleteService();
 		boolean isArticleWriter = service.isArticleWriter(board_num, pass);
 

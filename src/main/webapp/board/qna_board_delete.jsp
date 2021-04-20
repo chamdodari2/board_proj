@@ -15,8 +15,8 @@
 	<section id="passForm">
 		<form name="deleteForm"
 			action="boardDeletePro.do?board_num=${board_num}" method="post">
-			<input type="hidden" name="page" value="${page}" /> 
-			<input type="hidden" name="board_num" value="${board_num}" />
+			<input type="hidden" name="page" value="${page}" /> <input
+				type="hidden" name="board_num" value="${board_num}" />
 
 			<table>
 				<tr>

@@ -1,3 +1,5 @@
+
+
 select max(board_num) from board ; 
 
 INSERT INTO web_gradle_erp.board
@@ -51,3 +53,9 @@ SELECT 1 FROM board WHERE board_num =25 and board_pass = '1234'; /* 넘어온 �
 DELETE
 FROM board WHERE board_num = 26;
 
+select BOARD_NUM, BOARD_NAME, BOARD_PASS, BOARD_SUBJECT, BOARD_CONTENT, BOARD_FILE, BOARD_RE_REF, BOARD_RE_LEV, BOARD_RE_SEQ, BOARD_READCOUNT, BOARD_DATE from board
+order by BOARD_RE_REF desc,  BOARD_RE_SEQ;
+
+
+update board  set BOARD_SUBJECT ='aaa',BOARD_CONTENT='aaa'
+where BOARD_NUM =77;
