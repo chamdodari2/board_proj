@@ -139,6 +139,7 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public int insertReplyArticle(BoardDto article) {
+		String sql ="";
 		return 0;
 	}
 
