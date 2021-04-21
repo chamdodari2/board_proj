@@ -39,7 +39,18 @@
 		<c:forEach var="board" items="${articleList}" > 
 		<td>${board.board_num}</td>
 		<td>
+	
+		<c:if test="${board.board_re_lev ne 0}">   <!--0과 같지 않으면  -->
+		<c:forEach var="i" begin="1" end="${board.board_re_lev }" >
+		&nbsp;
+		
+		</c:forEach>
+		 ↪
+		</c:if>
+		
 		   <a href="boardDetail.do?board_num=${ board.board_num}&page=${pageInfo.page}"> ${board.board_subject} </a><!--제목에 링크걸기  -->
+	
+	</td>
 		<td>${board.board_name}</td>
 		<td>${board.board_date}</td>
 		<td>${board.board_readcount}</td>

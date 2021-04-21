@@ -35,10 +35,19 @@ public class boardDaoTest {
 	}
 	
 	@Test
-	public void testInsertReplyArticle() {
-	System.out.println();
-
-	}
+	public void test10InsertReplyArticle() {
+	System.out.println("test10InsertReplyArticle");
+	BoardDto replyARticle =new BoardDto("정민강", "1111", "앙데4", "절대로33", "");
+	replyARticle.setBoard_re_ref(78);//20번 글에 대한 답변
+	System.out.println("replyARticle >>>" + replyARticle);
+	int res = dao.insertReplyArticle(replyARticle);
+	System.out.println("res >> " + res);
+	Assert.assertEquals(1, res);
+}
+	
+	
+	
+	
 	@Test
 	public void test01NextBoardNum() {
 		System.out.println("testNextBoardNum()");

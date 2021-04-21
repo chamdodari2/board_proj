@@ -15,7 +15,8 @@ import board_proj.action.BoardFileDownProAction;
 import board_proj.action.BoardListAction;
 import board_proj.action.BoardModifyFormAction;
 import board_proj.action.BoardModifyProAction;
-import board_proj.action.BoardReplyFormlAction;
+import board_proj.action.BoardReplyFormAction;
+import board_proj.action.BoardReplyProAction;
 import board_proj.action.BoardWriteProAction;
 import board_proj.dto.ActionForward;
 
@@ -80,7 +81,7 @@ public class BoardFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		} else if (command.equals("/boardReplyForm.do")) {
-			action = new BoardReplyFormlAction();
+			action = new BoardReplyFormAction();
 
 			try {
 				forward = action.execute(request, response);
@@ -124,6 +125,20 @@ public class BoardFrontController extends HttpServlet {
 			}
 		}else if (command.equals("/boardModifyPro.do")) { //  >> Pro.do 로 이동
 			action = new BoardModifyProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/boardReplyForm.do")) { // 답변글
+			action = new BoardReplyFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if (command.equals("/boardReplyPro.do")) { // 답변글
+			action = new BoardReplyProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {

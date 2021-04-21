@@ -5,23 +5,30 @@ import javax.servlet.http.HttpServletResponse;
 
 import board_proj.dto.ActionForward;
 import board_proj.dto.BoardDto;
-import board_proj.service.BoardDetailService;
+import board_proj.service.BoardReplyService;
 
-public class BoardReplyFormlAction implements Action {
+public class BoardReplyFormAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-		ActionForward forward = new ActionForward();
-		String page = request.getParameter("page");
-		int board_num =Integer.getInteger(request.getParameter("board_num"));
-		BoardDetailService service = new BoardDetailService();
+		int board_num = Integer.parseInt(request.getParameter("board_num"));
+		int page = Integer.parseInt(request.getParameter("page"));
+		
+		System.out.println("board_num >>>" + board_num + "page >>" + page);
+		
+		
+		BoardReplyService service = new BoardReplyService();
 		BoardDto article = service.getArticle(board_num);
+		System.out.println("article" + article);
+		
 		request.setAttribute("article", article);
 		request.setAttribute("page", page);
+		
+		ActionForward forward = new ActionForward();
+		
 		forward.setPath("/board/qna_board_reply.jsp");
 		
-		return null;
+		return forward;
 	}
 
 }

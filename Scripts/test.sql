@@ -1,4 +1,20 @@
 
+-- 답변
+select  * from board  where BOARD_RE_REF =78;
+
+update board set BOARD_RE_SEQ  = BOARD_RE_SEQ +1 where BOARD_RE_REF =23 and BOARD_RE_SEQ  0?
+
+-- 23번에 대해서 답변 
+update board set BOARD_RE_SEQ  = BOARD_RE_SEQ +1 where BOARD_RE_REF =23 and BOARD_RE_SEQ  0?
+
+-- 입력 . 답변글에서는 파일은 받지않기 근데 낫널로 설정해줘서 아무것도 없는거라도 넣어줘야함
+
+insert into board (BOARD_NUM, BOARD_NAME, BOARD_PASS, BOARD_SUBJECT, BOARD_CONTENT, BOARD_FILE, 
+BOARD_RE_REF, BOARD_RE_LEV, BOARD_RE_SEQ, BOARD_READCOUNT, BOARD_DATE)  
+values (26,'김상건?111','111',,,,,,);
+
+
+
 
 select max(board_num) from board ; 
 
