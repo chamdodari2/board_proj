@@ -13,7 +13,7 @@ import board_proj.service.BoardDeleteService;
 public class BoardDeleteProAction implements Action {
 
 	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)  {
 
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
 		String page = request.getParameter("page");
@@ -41,13 +41,17 @@ public class BoardDeleteProAction implements Action {
 		return forward;
 	}
 
-	private void sendMessage(HttpServletResponse response, String msg) throws IOException {
+	private void sendMessage(HttpServletResponse response, String msg) {
+		try {
 		PrintWriter out = response.getWriter();
 		out.println("<script>");
 		out.println("alert('" + msg + "');");
 		out.println("history.back();");
 		out.println("</script>");
 		out.close();
+	}catch ( IOException e) {
+		e.printStackTrace();
+	}
 	}
 
 }

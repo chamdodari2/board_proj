@@ -13,7 +13,7 @@ import board_proj.service.BoardModifyService;
 public class BoardModifyProAction implements Action {
 
 	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)  {
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
 		String pass = request.getParameter("board_pass");
 		int page = Integer.parseInt(request.getParameter("page"));
@@ -24,11 +24,15 @@ public class BoardModifyProAction implements Action {
 		ActionForward forward = null;
 		
 		boolean isArticleWriter = service.isArticleWriter(board_num, pass);
+		
+		try {
 		if (!isArticleWriter) {
 			sendMessage(response, "수정할 권한이 없습니다.");
 			return forward;
 		}
-		
+		}catch(Exception e ) {
+			e.printStackTrace();
+		}
 		
 		BoardDto article = new BoardDto();
 		article = service.getArticle(board_num);
@@ -43,12 +47,16 @@ public class BoardModifyProAction implements Action {
 		
 		boolean isModifySuccess = service.modifyArticle(article);
 		
-
+		try {
 		if (!isModifySuccess) {
 			sendMessage(response, "수정 실패");
 			return forward;
 
 		}
+		}catch(Exception e ) {
+			e.printStackTrace();
+		}
+		
 		forward = new ActionForward();
 		forward.setRedirect(true);
 		forward.setPath("boardDetail.do?board_num=" + article.getBoard_num()+"&page="+ page);

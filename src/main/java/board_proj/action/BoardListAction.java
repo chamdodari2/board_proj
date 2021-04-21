@@ -13,7 +13,7 @@ import board_proj.service.BoardListService;
 public class BoardListAction implements Action {
 
 	@Override // 결국 얘가 수행되는거당
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		// 페이지로이동
 		int page = 1; // 한 화면에
 		int limit = 10; // 보일 게시글 수

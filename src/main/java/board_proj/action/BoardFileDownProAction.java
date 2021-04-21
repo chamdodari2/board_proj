@@ -15,8 +15,9 @@ import board_proj.dto.ActionForward;
 public class BoardFileDownProAction implements Action {
 
 	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)  {
 		//	<a href="boardFileDownPro.do?downFile=${article.board_file }"> ${article.board_file}</a>
+		try {
 		System.out.println("일단 다운로드 페이지로 넘어왔당");		
 		String downFile = request.getParameter("downFile");
 		System.out.println(downFile);
@@ -55,7 +56,9 @@ public class BoardFileDownProAction implements Action {
 		out2.close();
 		in.close();
 		
-		
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 

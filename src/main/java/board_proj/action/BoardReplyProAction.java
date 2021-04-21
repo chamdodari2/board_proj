@@ -12,7 +12,7 @@ import board_proj.service.BoardReplyProService;
 public class BoardReplyProAction implements Action {
 
 	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)  {
 		int page = Integer.parseInt(request.getParameter("page"));
 		BoardDto article = boardArticle(request);
 		System.out.println("article >>>> "+article);
@@ -25,6 +25,8 @@ public class BoardReplyProAction implements Action {
 		if(res) {
 			forward = new ActionForward("boardList.do?page="+ page , true);
 		}else {
+			
+			try {
 			response.setContentType("text/html;charset=UTF-8");
 			
 			PrintWriter out = response.getWriter();
@@ -34,7 +36,11 @@ public class BoardReplyProAction implements Action {
 			out.println("history.back();");
 			out.println("</script>");
 			out.close();
-		}
+			}catch(Exception e ) {
+				e.printStackTrace();
+			}
+			}
+			
 		return forward;
 		 
 
