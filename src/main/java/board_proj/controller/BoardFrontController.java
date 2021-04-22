@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import board_proj.action.Action;
+import board_proj.action.NullAction;
 import board_proj.dto.ActionForward;
 
 @WebServlet(urlPatterns = {"*.do"},  // 모든 확장자가 do인 애들이 부르면 각 요청에 맞는 jsp로 포워딩쓰           //1
@@ -45,7 +46,10 @@ public class BoardFrontController extends HttpServlet {
 				cls = Class.forName((String)entry.getValue());    //5. 이 두줄로 끝난당
 				action = (Action) cls.newInstance();
 				}catch(ClassNotFoundException e ) {
-					e.printStackTrace();
+					
+						action = new NullAction();
+					
+					e.printStackTrace(); //보안을 위해서는 런칭할떄 주석처리 꼭 해주어야 해킹안당한다! 해커가 이거가지고 해킹한당
 				}
 				actionMap.put((String)entry.getKey(), action);
 			}
@@ -67,6 +71,8 @@ public class BoardFrontController extends HttpServlet {
 		String command = request.getServletPath();
 		
 		Action action = actionMap.get(command);
+		
+		
 		ActionForward forward = action.execute(request, response);
 
 		if (forward != null) {
